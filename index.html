@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Dependency CSS-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/main.css" media="screen,projection" />
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Your generic provider</a>
+        </div>
+    </nav>
+
+    <!-- SIDE FILTERS -->
+    <div class="sideView anti-container left">
+        <h2>Role</h2>
+        <p>
+            <label>
+                <input name="roleFilter" type="radio" checked />
+                <span>All</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input name="roleFilter" type="radio" checked />
+                <span>Support</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input name="roleFilter" type="radio" />
+                <span>Carry</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input name="roleFilter" type="radio" />
+                <span>Tank</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input name="roleFilter" type="radio" />
+                <span>Jungler</span>
+            </label>
+        </p>
+    </div>
+
+    <!-- SIDE FILTERS -->
+    <div class="sideView anti-container right center">
+        <p class="flow-text">Useful links</p>
+        <ul>
+            <li>
+                <a class="btn btn-flat" href="#">Forum</a>
+            </li>
+            <li>
+                <a class="btn btn-flat" href="#">Analytics</a>
+            </li>
+            <li>
+                <a class="btn btn-flat" href="#">Add Script</a>
+            </li>
+            <li>
+                <a class="btn btn-flat" href="#">Stuff</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- CONTENT -->
+    <div id="content center">
+
+
+        <!-- SEARCH -->
+        <div class="container">
+            <div class="input-field hoverable" id="searchWrapper">
+                <i class="material-icons prefix">search</i>
+                <input id="searchField" type="text" placeholder="Search" class="validate">
+            </div>
+        </div>
+
+        <!-- SCRIPT MODAL -->
+        <div id="filter" class="modal bottom-sheet">
+            <div class="modal-content">
+                <img id="modalChampImg" class="responsive-img" src="">
+                <div class="modalWrapper">
+
+                    <h2 id="modalChampName" class="center"></h2>
+
+                    <ul class="collection" id="scripts">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAMP LIST -->
+        <div class="container row center" id="list">
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/Javascript" src="js/main.js"></script>
+</body>
+
+</html>

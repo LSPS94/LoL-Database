@@ -1,0 +1,106 @@
+#searchWrapper,
+#searchWrapper > i.material-icons {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.champWrapper {
+  margin-bottom: 10px;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.champImg {
+  margin-top: 10px;
+  width: 120px;
+  height: 120px;
+}
+
+img {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+img[data-src] {
+  opacity: 0;
+}
+
+.anti-container > ul > li {
+  margin: 10px 0;
+}
+
+a.secondary-content > i {
+  color: gold;
+}
+
+#content {
+  padding-top: 25px;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #2a2d31;
+  }
+  50% {
+    background-color: #3868a9;
+  }
+  100% {
+    background-color: #2a2d31;
+  }
+}
+
+.sideView {
+  position: fixed;
+  padding-left: 50px;
+}
+
+.nav-wrapper {
+  animation: pulse 10s infinite;
+}
+
+.anti-container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 50%;
+  display: none;
+}
+
+@media only screen and (min-width: 993px) {
+  .anti-container {
+    width: 15%;
+    display: block;
+  }
+}
+
+.right {
+  right: 0 !important;
+}
+
+#modalChampName {
+  padding: 10px 0 0 10px;
+  width: 100%;
+}
+
+.modal.bottom-sheet {
+  max-height: 100%;
+}
+
+.modal .modal-content {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.modalWrapper {
+}
+
+#modalChampImg {
+  float: left;
+  width: 308px;
+  height: 560px;
+}
+
+.collapsible-body span {
+  overflow: hidden;
+  margin-left: 50px;
+}
