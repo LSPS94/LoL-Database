@@ -90,6 +90,12 @@ a.secondary-content>i {
   height: 560px;
 }
 
+.allFilter {
+  font-size: 2rem !important;
+  margin-bottom: 15px;
+  padding-left: 40px !important;
+}
+
 .collapsible-body span {
   overflow: hidden;
   margin-left: 50px;
