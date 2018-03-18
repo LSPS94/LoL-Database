@@ -20,7 +20,7 @@ var version
 
 loadJSON("https://ddragon.leagueoflegends.com/api/versions.json", function (data) {
     version = data[0]
-    loadJSON("http://ddragon.leagueoflegends.com/cdn/" + version + "/data/en_US/champion.json", function (data) {
+    loadJSON("https://ddragon.leagueoflegends.com/cdn/" + version + "/data/en_US/champion.json", function (data) {
         for (champ in data.data) {
           var champObject = data.data[champ]
           champData.push({
