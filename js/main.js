@@ -1,152 +1,8 @@
-var json = {
-  version: '8.5.2',
-  list: [
-    'Aatrox',
-    'Ahri',
-    'Akali',
-    'Alistar',
-    'Amumu',
-    'Anivia',
-    'Annie',
-    'Ashe',
-    'AurelionSol',
-    'Azir',
-    'Bard',
-    'Blitzcrank',
-    'Brand',
-    'Braum',
-    'Caitlyn',
-    'Camille',
-    'Cassiopeia',
-    'Chogath',
-    'Corki',
-    'Darius',
-    'Diana',
-    'Draven',
-    'DrMundo',
-    'Ekko',
-    'Elise',
-    'Evelynn',
-    'Ezreal',
-    'Fiddlesticks',
-    'Fiora',
-    'Fizz',
-    'Galio',
-    'Gangplank',
-    'Garen',
-    'Gnar',
-    'Gragas',
-    'Graves',
-    'Hecarim',
-    'Heimerdinger',
-    'Illaoi',
-    'Irelia',
-    'Ivern',
-    'Janna',
-    'JarvanIV',
-    'Jax',
-    'Jayce',
-    'Jhin',
-    'Jinx',
-    'Kaisa',
-    'Kalista',
-    'Karma',
-    'Karthus',
-    'Kassadin',
-    'Katarina',
-    'Kayle',
-    'Kayn',
-    'Kennen',
-    'Khazix',
-    'Kindred',
-    'Kled',
-    'KogMaw',
-    'Leblanc',
-    'LeeSin',
-    'Leona',
-    'Lissandra',
-    'Lucian',
-    'Lulu',
-    'Lux',
-    'Malphite',
-    'Malzahar',
-    'Maokai',
-    'MasterYi',
-    'MissFortune',
-    'MonkeyKing',
-    'Mordekaiser',
-    'Morgana',
-    'Nami',
-    'Nasus',
-    'Nautilus',
-    'Nidalee',
-    'Nocturne',
-    'Nunu',
-    'Olaf',
-    'Orianna',
-    'Ornn',
-    'Pantheon',
-    'Poppy',
-    'Quinn',
-    'Rakan',
-    'Rammus',
-    'RekSai',
-    'Renekton',
-    'Rengar',
-    'Riven',
-    'Rumble',
-    'Ryze',
-    'Sejuani',
-    'Shaco',
-    'Shen',
-    'Shyvana',
-    'Singed',
-    'Sion',
-    'Sivir',
-    'Skarner',
-    'Sona',
-    'Soraka',
-    'Swain',
-    'Syndra',
-    'TahmKench',
-    'Taliyah',
-    'Talon',
-    'Taric',
-    'Teemo',
-    'Thresh',
-    'Tristana',
-    'Trundle',
-    'Tryndamere',
-    'TwistedFate',
-    'Twitch',
-    'Udyr',
-    'Urgot',
-    'Varus',
-    'Vayne',
-    'Veigar',
-    'Velkoz',
-    'Vi',
-    'Viktor',
-    'Vladimir',
-    'Volibear',
-    'Warwick',
-    'Xayah',
-    'Xerath',
-    'XinZhao',
-    'Yasuo',
-    'Yorick',
-    'Zac',
-    'Zed',
-    'Ziggs',
-    'Zilean',
-    'Zoe',
-    'Zyra'
-  ]
-}
+var champData = []
 
 function loadJSON(path, success, error) {
   var xhr = new XMLHttpRequest()
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         if (success) success(JSON.parse(xhr.responseText))
@@ -159,37 +15,72 @@ function loadJSON(path, success, error) {
   xhr.send()
 }
 
+var version
+
+
+loadJSON("https://ddragon.leagueoflegends.com/api/versions.json", function (data) {
+    version = data[0]
+    loadJSON("http://ddragon.leagueoflegends.com/cdn/" + version + "/data/en_US/champion.json", function (data) {
+        for (champ in data.data) {
+          var champObject = data.data[champ]
+          champData.push({
+            tags: champObject.tags,
+            systemName: champ,
+            name: champObject.name,
+            title: capitalizeFirstLetter(champObject.title)
+          })
+        }
+        if (localStorage && !localStorage.data && !localStorage.version) {
+          renderChamps(champData, true)
+        }
+        if (localStorage) {
+          localStorage.setItem("data", JSON.stringify(champData))
+          localStorage.setItem("version", version)
+        }
+      },
+      function (error) {
+        console.error(error)
+      })
+  },
+  function (error) {
+    console.error(error)
+  })
+
+
 var elem = document.querySelector('.collapsible')
 M.Collapsible.init(elem)
 
+var elem = document.querySelectorAll('.tooltipped');
+M.Tooltip.init(elem);
+
 var elem = document.querySelector('.modal')
 M.Modal.init(elem, {
-  onCloseEnd: function() {
+  onCloseEnd: function () {
     document.getElementById('modalChampImg').src = ''
   }
 })
 
-var version
 
 function renderChamps(data, firstRun = false) {
+  if (!renderChamps) return;
   var str = ''
   for (i = 0; i < data.length; i++) {
-    str += `<div class="col s6 m4 l3 hoverable champWrapper" onclick=showChamp("${
-      data[i]
+    str += `<div class="col s6 m6 l3 hoverable champWrapper" onclick=showChamp("${
+      data[i].systemName
     }")>
             <img class="circle champImg" ${
               firstRun ? 'data-' : ''
             }src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${
-      data[i]
+      data[i].systemName
     }.png">
-            <p class="flow-text">${data[i]}</p>
+            <p class="flow-text">${data[i].systemName}</p>
         </div>`
   }
   document.querySelector('#list').innerHTML = str
-  if (!firstRun) return
-  ;[].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
+  if (!firstRun) return;
+  [].forEach.call(document.querySelectorAll('img[data-src]'), function (img) {
     img.setAttribute('src', img.getAttribute('data-src'))
-    img.onload = function() {
+    img.onload = function () {
       img.removeAttribute('data-src')
     }
   })
@@ -197,22 +88,26 @@ function renderChamps(data, firstRun = false) {
 
 document.getElementById('searchField').addEventListener('keyup', filterData)
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function filterData() {
   //Search
   var filter = document.getElementById('searchField').value.toLowerCase()
+  var checkbox = document.querySelector('input[name="roleFilter"]:checked').value;
   var newList = []
-  var champs = json.list
-  for (i = 0; i < champs.length; i++) {
-    if (champs[i].toLowerCase().includes(filter)) {
-      newList.push(champs[i])
+  for (i = 0; i < champData.length; i++) {
+    if (champData[i].name.toLowerCase().includes(filter) || champData[i].systemName.toLowerCase().includes(filter)) {
+      if (checkbox == "All" || champData[i].tags.includes(checkbox))
+        newList.push(champData[i])
     }
   }
   renderChamps(newList)
 }
 
 //Demo Data
-var scripts = [
-  {
+var scripts = [{
     name: 'Some script',
     description: 'Some text',
     download: 'https://www.google.com'
@@ -232,19 +127,22 @@ var scripts = [
 function showChamp(champName) {
   var instance = M.Modal.getInstance(elem)
 
-  //DemoData
-  //scripts = allScripts[champName]
-  document.getElementById('modalChampName').innerHTML = champName
+  var champ = champData.filter(champ => champ.systemName == champName)[0]
+
+  if (!champ) return;
+
+  document.getElementById('modalChampName').innerHTML = champ.name
+  document.getElementById('modalChampTitle').innerHTML = champ.title
   var img = document.getElementById('modalChampImg')
   img.setAttribute(
     'data-src',
     'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/' +
-      champName +
-      '_0.jpg'
+    champ.name +
+    '_0.jpg'
   )
 
   img.setAttribute('src', img.getAttribute('data-src'))
-  img.onload = function() {
+  img.onload = function () {
     img.removeAttribute('data-src')
   }
 
@@ -271,17 +169,7 @@ function showChamp(champName) {
   instance.open()
 }
 
-version = json.version
-renderChamps(json.list, true)
-
-/*
-loadJSON(
-  'data/champs.json',
-  function(data) {
-    console.log(data)
-  },
-  function(xhr) {
-    console.error(xhr)
-  }
-)
-*/
+if (localStorage && localStorage.data && localStorage.version) {
+  version = localStorage.version
+  renderChamps(JSON.parse(localStorage.data), true)
+}

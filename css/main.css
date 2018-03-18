@@ -1,5 +1,5 @@
 #searchWrapper,
-#searchWrapper > i.material-icons {
+#searchWrapper>i.material-icons {
   padding: 10px;
   border-radius: 5px;
 }
@@ -25,11 +25,11 @@ img[data-src] {
   opacity: 0;
 }
 
-.anti-container > ul > li {
-  margin: 10px 0;
+.role {
+  margin-left: 20px;
 }
 
-a.secondary-content > i {
+a.secondary-content>i {
   color: gold;
 }
 
@@ -50,26 +50,11 @@ a.secondary-content > i {
 }
 
 .sideView {
-  position: fixed;
-  padding-left: 50px;
+  min-height: 500px !important;
 }
 
 .nav-wrapper {
   animation: pulse 10s infinite;
-}
-
-.anti-container {
-  margin: 0 auto;
-  max-width: 1280px;
-  width: 50%;
-  display: none;
-}
-
-@media only screen and (min-width: 993px) {
-  .anti-container {
-    width: 15%;
-    display: block;
-  }
 }
 
 .right {
@@ -91,7 +76,12 @@ a.secondary-content > i {
   margin: 0;
 }
 
-.modalWrapper {
+.rolePrefix {
+  height: 50px;
+}
+
+.rolePrefix img {
+  transform: translateY(-10px)
 }
 
 #modalChampImg {
@@ -103,4 +93,14 @@ a.secondary-content > i {
 .collapsible-body span {
   overflow: hidden;
   margin-left: 50px;
+}
+
+.fixed {
+  position: initial
+}
+
+@media only screen and (min-width: 601px) {
+  .fixed {
+    position: fixed
+  }
 }

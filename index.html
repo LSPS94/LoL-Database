@@ -20,91 +20,122 @@
         </div>
     </nav>
 
-    <!-- SIDE FILTERS -->
-    <div class="sideView anti-container left">
-        <h2>Role</h2>
-        <p>
-            <label>
-                <input name="roleFilter" type="radio" checked />
-                <span>All</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input name="roleFilter" type="radio" checked />
-                <span>Support</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input name="roleFilter" type="radio" />
-                <span>Carry</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input name="roleFilter" type="radio" />
-                <span>Tank</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input name="roleFilter" type="radio" />
-                <span>Jungler</span>
-            </label>
-        </p>
+    <!-- SCRIPT MODAL -->
+    <div id="filter" class="modal bottom-sheet">
+        <div class="modal-content">
+            <img id="modalChampImg" class="responsive-img hide-on-small-only" src="">
+            <div class="modalWrapper">
+
+                <h2 id="modalChampName" class="center"></h2>
+                <h4 id="modalChampTitle" class="center"></h4>
+
+
+                <ul class="collection" id="scripts">
+
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <!-- SIDE FILTERS -->
-    <div class="sideView anti-container right center">
-        <p class="flow-text">Useful links</p>
-        <ul>
-            <li>
-                <a class="btn btn-flat" href="#">Forum</a>
-            </li>
-            <li>
-                <a class="btn btn-flat" href="#">Analytics</a>
-            </li>
-            <li>
-                <a class="btn btn-flat" href="#">Add Script</a>
-            </li>
-            <li>
-                <a class="btn btn-flat" href="#">Stuff</a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- CONTENT -->
-    <div id="content center">
-
+    <div class="row content">
 
         <!-- SEARCH -->
-        <div class="container">
+        <div class="col l12 m12 s12">
             <div class="input-field hoverable" id="searchWrapper">
                 <i class="material-icons prefix">search</i>
                 <input id="searchField" type="text" placeholder="Search" class="validate">
             </div>
         </div>
 
-        <!-- SCRIPT MODAL -->
-        <div id="filter" class="modal bottom-sheet">
-            <div class="modal-content">
-                <img id="modalChampImg" class="responsive-img" src="">
-                <div class="modalWrapper">
+        <!-- SIDE FILTERS -->
+        <div class="sideView col l2 m3 s6 left">
+            <div class="fixed role" onchange="filterData()">
+                <p class="flow-text">Role</p>
+                <p>
+                    <label>
+                        <input name="roleFilter" value="All" type="radio" checked />
+                        <span>All</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input name="roleFilter" value="Fighter" type="radio" />
+                        <span class="rolePrefix">
+                            <img class="rolePrefix tooltipped" src="./images/icons/Fighter.png" data-position="right" data-delay="50" data-tooltip="Fighter">
+                        </span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input name="roleFilter" value="Tank" type="radio" />
+                        <span class="rolePrefix">
+                            <img class="rolePrefix tooltipped" src="./images/icons/Tank.png" data-position="right" data-delay="50" data-tooltip="Tank">
+                        </span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input name="roleFilter" value="Mage" type="radio" />
+                        <span class="rolePrefix">
+                            <img class="rolePrefix tooltipped" src="./images/icons/Mage.png" data-position="right" data-delay="50" data-tooltip="Mage">
+                        </span>
+                    </label>
+                </p>
+                <p>
+                    <label>
 
-                    <h2 id="modalChampName" class="center"></h2>
+                        <input name="roleFilter" value="Assassin" type="radio" />
 
-                    <ul class="collection" id="scripts">
+                        <span class="rolePrefix">
+                            <img class="rolePrefix tooltipped" src="./images/icons/Assasin.png" data-position="right" data-delay="50" data-tooltip="Assassin">
+                        </span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input name="roleFilter" value="Support" type="radio" />
+                        <span class="rolePrefix">
+                            <img class="rolePrefix tooltipped" src="./images/icons/Support.png" data-position="right" data-delay="50" data-tooltip="Support">
+                        </span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input name="roleFilter" value="Marksman" type="radio" />
+                        <span class="rolePrefix">
+                            <img class="rolePrefix tooltipped" src="./images/icons/Marksman.png" data-position="right" data-delay="50" data-tooltip="Marksman">
+                        </span>
+                    </label>
+                </p>
+            </div>
+        </div>
 
-                    </ul>
-                </div>
+        <!-- USEFUL LINKS -->
+        <div class="sideView col l2 m3 s6 right center">
+            <div class="fixed">
+                <p class="flow-text">Useful links</p>
+                <ul>
+                    <li>
+                        <a class="btn btn-flat" href="#">Forum</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-flat" href="#">Analytics</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-flat" href="#">Add Script</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-flat" href="#">Stuff</a>
+                    </li>
+                </ul>
             </div>
         </div>
 
         <!-- CHAMP LIST -->
-        <div class="container row center" id="list">
+        <div class="col l8 m6 s12">
+            <div class="row center" id="list">
+            </div>
         </div>
-
     </div>
 
     <script type="text/javascript" src="js/materialize.min.js"></script>
