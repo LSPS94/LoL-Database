@@ -1,3 +1,35 @@
+:root {
+  /*
+  --main-background-color: #232323;
+  --main-font-color: rgba(255, 255, 255, 0.87);
+  --script-bg-color: 232323
+  */
+  --main-background-color: #fff;
+  --main-font-color: rgba(0, 0, 0, 0.87);
+  --script-bg-color: rgb(250, 250, 250)
+}
+
+.btn-flat {
+  color: var(--main-font-color)
+}
+
+body {
+  background-color: var(--main-background-color);
+  color: var(--main-font-color)
+}
+
+#script {
+  background-color: var(--main-background-color)
+}
+
+.collection {
+  border: 0
+}
+
+.collection .collection-item {
+  background-color: var(--script-bg-color);
+}
+
 #searchWrapper,
 #searchWrapper>i.material-icons {
   padding: 10px;

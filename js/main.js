@@ -1,5 +1,19 @@
 var champData = []
 
+function setTheme(overwrite = false) {
+  var dark = overwrite ? overwrite : document.getElementById('theme').checked == true
+  document.body.style.cssText = dark ? '--main-background-color: #232323;--main-font-color: rgba(255, 255, 255, 0.87);--script-bg-color: 232323' : '  --main-background-color: #fff;--main-font-color: rgba(0, 0, 0, 0.87);--script-bg-color: rgb(250, 250, 250)'
+  document.getElementById('themeLabel').innerHTML = dark ? "Dark Theme" : "Bright Theme"
+  if (localStorage) {
+    localStorage.setItem('dark', dark)
+  }
+}
+
+if (localStorage && localStorage.dark) {
+  document.getElementById('theme').checked = localStorage.dark == "true"
+  setTheme(localStorage.dark == "true")
+}
+
 function loadJSON(path, success, error) {
   var xhr = new XMLHttpRequest()
   xhr.onreadystatechange = function () {
@@ -65,14 +79,14 @@ function renderChamps(data, firstRun = false) {
   if (!renderChamps) return;
   var str = ''
   for (i = 0; i < data.length; i++) {
-    str += `<div class="col s6 m6 l3 hoverable champWrapper" onclick=showChamp("${
+    str += `<div class="col s6 m6 l3 xl2 hoverable champWrapper" onclick=showChamp("${
       data[i].systemName
     }")>
             <img class="circle champImg" ${
               firstRun ? 'data-' : ''
             }src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${
       data[i].systemName
-    }.png">
+    }.png"><span class="badge">3</span>
             <p class="flow-text">${data[i].systemName}</p>
         </div>`
   }

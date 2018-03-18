@@ -2,6 +2,10 @@
 <html>
 
 <head>
+
+    <meta charset="UTF-8">
+    <title>Script Database</title>
+
     <!--Import Dependency CSS-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
@@ -17,11 +21,18 @@
     <nav>
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center">Your generic provider</a>
+            <div class="switch right">
+                <label>
+                    <span id="themeLabel">Bright Theme</span>
+                    <input type="checkbox" id="theme" onchange="setTheme()">
+                    <span class="lever"></span>
+                </label>
+            </div>
         </div>
     </nav>
 
     <!-- SCRIPT MODAL -->
-    <div id="filter" class="modal bottom-sheet">
+    <div id="script" class="modal bottom-sheet">
         <div class="modal-content">
             <img id="modalChampImg" class="responsive-img hide-on-small-only" src="">
             <div class="modalWrapper">
