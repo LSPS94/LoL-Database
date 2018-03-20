@@ -6,24 +6,24 @@
   */
   --main-background-color: #fff;
   --main-font-color: rgba(0, 0, 0, 0.87);
-  --script-bg-color: rgb(250, 250, 250)
+  --script-bg-color: rgb(250, 250, 250);
 }
 
 .btn-flat {
-  color: var(--main-font-color)
+  color: var(--main-font-color);
 }
 
 body {
   background-color: var(--main-background-color);
-  color: var(--main-font-color)
+  color: var(--main-font-color);
 }
 
 #script {
-  background-color: var(--main-background-color)
+  background-color: var(--main-background-color);
 }
 
 .collection {
-  border: 0
+  border: 0;
 }
 
 .collection .collection-item {
@@ -31,9 +31,16 @@ body {
 }
 
 #searchWrapper,
-#searchWrapper>i.material-icons {
+#searchWrapper > i.material-icons {
   padding: 10px;
   border-radius: 5px;
+}
+.searchCol {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background-color: var(--main-background-color);
 }
 
 .champWrapper {
@@ -61,7 +68,7 @@ img[data-src] {
   margin-left: 20px;
 }
 
-a.secondary-content>i {
+a.secondary-content > i {
   color: gold;
 }
 
@@ -81,6 +88,26 @@ a.secondary-content>i {
   }
 }
 
+.champImgWrapper {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.champImgWrapper span {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
+
+span.badge {
+  border-radius: 100%;
+  min-width: 25px !important;
+  height: 25px;
+  background-color: var(--main-font-color);
+  color: var(--script-bg-color);
+}
+
 .sideView {
   min-height: 500px !important;
 }
@@ -98,6 +125,11 @@ a.secondary-content>i {
   width: 100%;
 }
 
+.noFound {
+  width: 100%;
+  margin-top: 50px;
+}
+
 .modal.bottom-sheet {
   max-height: 100%;
 }
@@ -113,7 +145,7 @@ a.secondary-content>i {
 }
 
 .rolePrefix img {
-  transform: translateY(-10px)
+  transform: translateY(-10px);
 }
 
 #modalChampImg {
@@ -134,11 +166,11 @@ a.secondary-content>i {
 }
 
 .fixed {
-  position: initial
+  position: initial;
 }
 
 @media only screen and (min-width: 601px) {
   .fixed {
-    position: fixed
+    position: fixed;
   }
 }
