@@ -155,6 +155,7 @@ function filterData() {
         newList.push(champData[i])
     }
   }
+  window.scrollTo(0, 0)
   renderChamps(newList)
 }
 
