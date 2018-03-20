@@ -121,7 +121,7 @@ function renderChamps(data, firstRun = false) {
       scriptData[data[i].systemName] ? scriptData[data[i].systemName].length : 0
     }</span>
             </div>
-            <p class="flow-text">${data[i].name}</p>
+            <p class="flow-text truncate">${data[i].name}</p>
         </div>`
   }
   document.querySelector('#list').innerHTML = str
@@ -182,7 +182,6 @@ function showChamp(champName) {
 
   //CARE FOR XSS!
   var script = scriptData[champ.systemName] || []
-  console.log(script)
   var str =
     script.length == 0
       ? '<div class="center noFound"><span class="flow-text nonFound grey-text text-darken-2">No scripts found for ' +
