@@ -171,7 +171,7 @@ function showChamp(champName) {
   var img = document.getElementById('modalChampImg')
   img.setAttribute(
     'data-src',
-    'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/' +
+    'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/' +
       champ.systemName +
       '_0.jpg'
   )
