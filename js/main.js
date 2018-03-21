@@ -233,12 +233,6 @@ function resetStars(element) {
 function vote(element) {
   //Polyfill
   var rating = (i = [...element.parentNode.children].indexOf(element)) + 1
-  console.log(
-    'You gave ' +
-      rating +
-      ' stars to ' +
-      element.parentNode.parentNode.childNodes[3].innerHTML
-  )
   M.toast({
     html:
       'You gave ' +
