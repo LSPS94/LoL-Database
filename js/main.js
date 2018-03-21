@@ -197,9 +197,9 @@ function showChamp(champName) {
         </a>
         <span class="title">${script[i].name}</span>
         <p>by ${script[i].author}</p>
-        <a href="#!" class="secondary-content" onmouseleave="resetStars(this)">${'<i class="material-icons" onmouseover="hoverStar(this)">star</i>'.repeat(
+        <a href="#!" class="secondary-content" onmouseleave="resetStars(this)">${'<i class="material-icons" onclick="vote(this)" onmouseover="hoverStar(this)">star</i>'.repeat(
           stars
-        )}${'<i class="material-icons" onmouseover="hoverStar(this)">star_outline</i>'.repeat(
+        )}${'<i class="material-icons" onmouseover="hoverStar(this)" onclick="vote(this)">star_outline</i>'.repeat(
       5 - stars
     )}
         </a>
@@ -227,6 +227,17 @@ function resetStars(element) {
   for (i = 0; i < 5; i++) {
     element.childNodes[i].innerHTML = i <= stars ? 'star' : 'star_outline'
   }
+}
+
+function vote(element) {
+  //Polyfill
+  var rating = (i = [...element.parentNode.children].indexOf(element)) + 1
+  console.log(
+    'You gave ' +
+      rating +
+      ' stars to ' +
+      element.parentNode.parentNode.childNodes[3].innerHTML
+  )
 }
 
 if (localStorage && localStorage.champData && localStorage.version) {
