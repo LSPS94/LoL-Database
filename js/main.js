@@ -197,9 +197,11 @@ function showChamp(champName) {
         </a>
         <span class="title">${script[i].name}</span>
         <p>by ${script[i].author}</p>
-        <a href="#!" class="secondary-content">
-            ${'<i class="material-icons">star</i>'.repeat(stars)}
-            ${'<i class="material-icons">star_outline</i>'.repeat(5 - stars)}
+        <a href="#!" class="secondary-content" onmouseleave="resetStars(this)">${'<i class="material-icons" onmouseover="hoverStar(this)">star</i>'.repeat(
+          stars
+        )}${'<i class="material-icons" onmouseover="hoverStar(this)">star_outline</i>'.repeat(
+      5 - stars
+    )}
         </a>
         </li>
         `
@@ -208,6 +210,23 @@ function showChamp(champName) {
   document.getElementById('scripts').innerHTML = str
 
   instance.open()
+}
+
+function hoverStar(element) {
+  //Polyfill
+  var parent = element.parentNode
+  var spot = (i = [...element.parentNode.children].indexOf(element))
+  for (i = 0; i < 5; i++) {
+    parent.childNodes[i].innerHTML = i <= spot ? 'star' : 'star_outline'
+  }
+}
+
+function resetStars(element) {
+  //Get Starts
+  var stars = Math.floor(Math.random() * 5) + 1
+  for (i = 0; i < 5; i++) {
+    element.childNodes[i].innerHTML = i <= stars ? 'star' : 'star_outline'
+  }
 }
 
 if (localStorage && localStorage.champData && localStorage.version) {
