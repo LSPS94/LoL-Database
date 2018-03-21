@@ -27,7 +27,8 @@ function loadScripts() {
       scriptData[champData[i].systemName].push({
         name: 'Script' + c,
         author: 'Author' + c,
-        download: 'http://goo.gl/4qagA1'
+        download: 'http://goo.gl/4qagA1',
+        stars: Math.floor(Math.random() * 5) + 1
       })
     }
   }
@@ -190,16 +191,16 @@ function showChamp(champName) {
         '</span><div>'
       : ''
   for (i = 0; i < script.length; i++) {
-    var stars = Math.floor(Math.random() * 5) + 1
+    var stars = scriptData[champ.systemName][i].stars
     str += `<li class="collection-item avatar">
         <a href="${script[i].download}">
             <i class="material-icons circle">file_download</i>
         </a>
         <span class="title">${script[i].name}</span>
         <p>by ${script[i].author}</p>
-        <a href="#!" class="secondary-content" onmouseleave="resetStars(this)">${'<i class="material-icons" onclick="vote(this)" onmouseover="hoverStar(this)">star</i>'.repeat(
-          stars
-        )}${'<i class="material-icons" onmouseover="hoverStar(this)" onclick="vote(this)">star_outline</i>'.repeat(
+        <a href="#!" class="secondary-content" onmouseleave="resetStars(this)" original-stars="${stars}">${'<i class="material-icons" onclick="vote(this)" onmouseover="hoverStar(this)">star</i>'.repeat(
+      stars
+    )}${'<i class="material-icons" onmouseover="hoverStar(this)" onclick="vote(this)">star_outline</i>'.repeat(
       5 - stars
     )}
         </a>
@@ -223,8 +224,9 @@ function hoverStar(element) {
 
 function resetStars(element) {
   //Get Starts
-  var stars = Math.floor(Math.random() * 5) + 1
-  for (i = 0; i < 5; i++) {
+  var stars = element.getAttribute('original-stars') - 1
+  for (i = 1; i <= 5; i++) {
+    console.log(i, i <= stars)
     element.childNodes[i].innerHTML = i <= stars ? 'star' : 'star_outline'
   }
 }
