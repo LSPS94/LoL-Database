@@ -240,12 +240,13 @@ function vote(element) {
       ' stars to ' +
       element.parentNode.parentNode.childNodes[3].innerHTML
   )
-  M.toast(
-    'You gave ' +
+  M.toast({
+    html:
+      'You gave ' +
       rating +
       ' stars to ' +
       element.parentNode.parentNode.childNodes[3].innerHTML
-  )
+  })
 }
 
 if (localStorage && localStorage.champData && localStorage.version) {
