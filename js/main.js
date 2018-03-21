@@ -226,7 +226,6 @@ function resetStars(element) {
   //Get Starts
   var stars = element.getAttribute('original-stars') - 1
   for (i = 1; i <= 5; i++) {
-    console.log(i, i <= stars)
     element.childNodes[i].innerHTML = i <= stars ? 'star' : 'star_outline'
   }
 }
