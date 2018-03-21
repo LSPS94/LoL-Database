@@ -216,7 +216,7 @@ function showChamp(champName) {
 function hoverStar(element) {
   //Polyfill
   var parent = element.parentNode
-  var spot = (i = [...element.parentNode.children].indexOf(element))
+  var spot = [...element.parentNode.children].indexOf(element)
   for (i = 0; i < 5; i++) {
     parent.childNodes[i].innerHTML = i <= spot ? 'star' : 'star_outline'
   }
@@ -232,10 +232,10 @@ function resetStars(element) {
 
 function vote(element) {
   //Polyfill
-  var rating = (i = [...element.parentNode.children].indexOf(element)) + 1
+  var rating = [...element.parentNode.children].indexOf(element) + 1
   M.toast({
     html:
-      'You gave ' +
+      '<i class="material-icons yellow-text">star</i> You gave ' +
       rating +
       ' stars to ' +
       element.parentNode.parentNode.childNodes[3].innerHTML
