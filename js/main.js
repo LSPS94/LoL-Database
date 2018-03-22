@@ -54,48 +54,16 @@ function loadJSON(path, success, error) {
   xhr.send()
 }
 
-loadJSON(
-  'https://ddragon.leagueoflegends.com/api/versions.json',
-  function(data) {
-    version = data[0]
-    loadJSON(
-      'https://ddragon.leagueoflegends.com/cdn/' +
-        version +
-        '/data/en_US/champion.json',
-      function(data) {
-        for (champ in data.data) {
-          var champObject = data.data[champ]
-          champData.push({
-            tags: champObject.tags,
-            systemName: champ,
-            name: champObject.name,
-            title: capitalizeFirstLetter(champObject.title)
-          })
-        }
-        loadScripts()
-        renderChamps(champData, true)
-        if (localStorage) {
-          localStorage.setItem('champData', JSON.stringify(champData))
-          localStorage.setItem('version', version)
-        }
-      },
-      function(error) {
-        console.error(error)
-      }
-    )
-  },
-  function(error) {
-    console.error(error)
-  }
-)
-
 var elem = document.querySelector('.collapsible')
 M.Collapsible.init(elem)
 
 var elem = document.querySelectorAll('.tooltipped')
 M.Tooltip.init(elem)
 
-var elem = document.querySelector('.modal')
+var elem = document.querySelector('#addScript')
+M.Modal.init(elem)
+
+var elem = document.querySelector('.modal.bottom-sheet')
 M.Modal.init(elem, {
   onCloseEnd: function() {
     document.getElementById('modalChampImg').src = ''
@@ -214,7 +182,6 @@ function showChamp(champName) {
 }
 
 function hoverStar(element) {
-  //Polyfill
   var parent = element.parentNode
   var spot = [...element.parentNode.children].indexOf(element)
   for (i = 0; i < 5; i++) {
@@ -231,7 +198,6 @@ function resetStars(element) {
 }
 
 function vote(element) {
-  //Polyfill
   var rating = [...element.parentNode.children].indexOf(element) + 1
   M.toast({
     html:
@@ -247,3 +213,73 @@ if (localStorage && localStorage.champData && localStorage.version) {
   loadScripts()
   renderChamps(JSON.parse(localStorage.champData), true)
 }
+
+function loadAddScript() {
+  var elem = document.querySelector('input.autocomplete.notInit')
+  if (!elem) return
+  elem.classList.remove('notInit')
+  M.Autocomplete.init(elem, {
+    onAutocomplete: function(value) {
+      document.getElementById('autocompletePrefix').src =
+        'https://ddragon.leagueoflegends.com/cdn/' +
+        version +
+        '/img/champion/' +
+        value +
+        '.png'
+    },
+    minLength: 2,
+    data: champData.map(a => a.systemName).reduce(function(obj, value) {
+      obj[value] =
+        'https://ddragon.leagueoflegends.com/cdn/' +
+        version +
+        '/img/champion/' +
+        value +
+        '.png'
+      return obj
+    }, {})
+  })
+
+  var script = document.createElement('script')
+  script.type = 'text/javascript'
+  script.src = 'https://www.google.com/recaptcha/api.js'
+
+  document.getElementsByTagName('head')[0].appendChild(script)
+}
+
+loadJSON(
+  'https://ddragon.leagueoflegends.com/api/versions.json',
+  function(data) {
+    version = data[0]
+    loadJSON(
+      'https://ddragon.leagueoflegends.com/cdn/' +
+        version +
+        '/data/en_US/champion.json',
+      function(data) {
+        for (champ in data.data) {
+          var champObject = data.data[champ]
+          champData.push({
+            tags: champObject.tags,
+            systemName: champ,
+            name: champObject.name,
+            title: capitalizeFirstLetter(champObject.title)
+          })
+        }
+        loadScripts()
+        renderChamps(
+          champData,
+          localStorage && localStorage.champData ? true : true
+        )
+        if (localStorage) {
+          localStorage.setItem('champData', JSON.stringify(champData))
+          localStorage.setItem('version', version)
+        }
+      },
+      function(error) {
+        console.error(error)
+      }
+    )
+  },
+  function(error) {
+    console.error(error)
+  }
+)

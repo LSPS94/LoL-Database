@@ -49,7 +49,46 @@
         </div>
     </div>
 
+    <!-- ADD SCRIPT MODAL -->
+    <div id="addScript" class="modal">
+        <div class="modal-content">
+            <h4>Add a script to the database</h4>
+            <div class="row">
+                <div class="input-field col m6 s12">
+                    <input id="scriptName" type="text" class="validate">
+                    <label for="scriptName">Script</label>
+                </div>
+                <div class="input-field col m6 s12">
+                    <input id="authorName" type="text" class="validate">
+                    <label for="authorName">Author</label>
+                </div>
+                <div class="input-field col m12 s12">
+                    <img class="prefix circle" id="autocompletePrefix" src="https://ddragon.leagueoflegends.com/cdn/8.6.1/img/champion/Aatrox.png">
+                    <input id="scriptChamp" type="text" class="validate autocomplete notInit">
+                    <label for="scriptChamp">Champion</label>
+                </div>
+                <div class="input-field col s12 s12">
+                    <input id="threadUrl" type="url" class="validate">
+                    <label for="threadUrl">Thread</label>
+                </div>
+                <div class="input-field col s12 s12">
+                    <input id="githubUrl" type="url" class="validate">
+                    <label for="githubUrl">GitHub</label>
+                </div>
+                <div class="g-recaptcha left" data-sitekey="6LeSWk4UAAAAAC3XFw4S0xuuNKbkPd9gdTVqNu5e"></div>
+                <a class="btn waves-effect waves-light right disabled">
+                    <i class="material-icons right">send</i>
+                    Submit </a>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close btn-flat">Close</a>
+        </div>
+    </div>
+
     <div class="row content">
+
 
         <!-- SEARCH -->
         <div class="col l12 m12 s12 searchCol">
@@ -134,7 +173,7 @@
                         <a class="btn btn-flat" href="#">Analytics</a>
                     </li>
                     <li>
-                        <a class="btn btn-flat" href="#">Add Script</a>
+                        <a class="btn btn-flat modal-trigger" href="#addScript" onclick="loadAddScript()">Add Script</a>
                     </li>
                     <li>
                         <a class="btn btn-flat" href="#">Stuff</a>

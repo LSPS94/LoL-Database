@@ -134,7 +134,11 @@ span.badge {
   max-height: 100%;
 }
 
-.modal .modal-content {
+img.prefix {
+  padding-right: 5px;
+}
+
+.modal.bottom-sheet .modal-content {
   width: 100%;
   padding: 0;
   margin: 0;
