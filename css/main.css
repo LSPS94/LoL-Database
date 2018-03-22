@@ -108,6 +108,14 @@ span.badge {
   color: var(--script-bg-color);
 }
 
+#addScript,
+.modal .modal-footer,
+input,
+.autocomplete-content.dropdown-content {
+  color: var(--main-font-color);
+  background-color: var(--main-background-color);
+}
+
 .sideView {
   min-height: 500px !important;
 }
