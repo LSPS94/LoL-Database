@@ -116,6 +116,10 @@ input,
   background-color: var(--main-background-color);
 }
 
+.autocomplete-content li .highlight {
+  color: var(--main-font-color);
+}
+
 .sideView {
   min-height: 500px !important;
 }
