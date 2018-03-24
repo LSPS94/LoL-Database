@@ -132,6 +132,14 @@ input,
   right: 0 !important;
 }
 
+.thread {
+  transform: translateX(50px);
+}
+
+.scriptInfo {
+  margin-left: 50px;
+}
+
 #modalChampName {
   padding: 10px 0 0 10px;
   width: 100%;
@@ -143,7 +151,7 @@ input,
 }
 
 .modal.bottom-sheet {
-  max-height: 100%;
+  max-height: 75%;
 }
 
 img.prefix {
@@ -168,6 +176,7 @@ img.prefix {
   float: left;
   width: 308px;
   height: 560px;
+  position: sticky;
 }
 
 .allFilter {

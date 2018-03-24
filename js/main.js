@@ -28,6 +28,7 @@ function loadScripts() {
         name: 'Script' + c,
         author: 'Author' + c,
         download: 'http://goo.gl/4qagA1',
+        thread: 'http://goo.gl/4qagA1',
         stars: Math.floor(Math.random() * 5) + 1
       })
     }
@@ -162,10 +163,15 @@ function showChamp(champName) {
     var stars = scriptData[champ.systemName][i].stars
     str += `<li class="collection-item avatar">
         <a href="${script[i].download}">
-            <i class="material-icons circle">file_download</i>
+            <i class="material-icons circle tooltipped" data-position="bottom" data-tooltip="Download Script">file_download</i>
         </a>
-        <span class="title">${script[i].name}</span>
-        <p>by ${script[i].author}</p>
+        <a href="${script[i].thread}">
+            <i class="material-icons circle thread tooltipped" data-position="bottom" data-tooltip="Visit Thread">web</i>
+        </a>
+        <div class="scriptInfo">
+          <span class="title">${script[i].name}</span>
+          <p>by ${script[i].author}</p>
+        </div>
         <a href="#!" class="secondary-content" onmouseleave="resetStars(this)" original-stars="${stars}">${'<i class="material-icons" onclick="vote(this)" onmouseover="hoverStar(this)">star</i>'.repeat(
       stars
     )}${'<i class="material-icons" onmouseover="hoverStar(this)" onclick="vote(this)">star_outline</i>'.repeat(
@@ -179,6 +185,10 @@ function showChamp(champName) {
   document.getElementById('scripts').innerHTML = str
 
   instance.open()
+
+  M.Tooltip.init(
+    document.querySelectorAll('li.collection-item.avatar .tooltipped')
+  )
 }
 
 function hoverStar(element) {
