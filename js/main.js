@@ -214,7 +214,7 @@ function vote(element) {
       '<i class="material-icons yellow-text">star</i> You gave ' +
       rating +
       ' stars to ' +
-      element.parentNode.parentNode.childNodes[3].innerHTML
+      element.parentNode.parentNode.children[2].children[0].innerHTML
   })
 }
 
