@@ -7,6 +7,7 @@
     <title>Script Database</title>
 
     <!--Import Dependency CSS-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="css/main.css" media="screen,projection" />
@@ -55,11 +56,11 @@
             <h4>Add a script to the database</h4>
             <div class="row">
                 <div class="input-field col m6 s12">
-                    <input id="scriptName" type="text" class="validate">
+                    <input id="scriptName" type="text" class="validate" data-length="50">
                     <label for="scriptName">Script</label>
                 </div>
                 <div class="input-field col m6 s12">
-                    <input id="authorName" type="text" class="validate">
+                    <input id="authorName" type="text" class="validate" data-length="50">
                     <label for="authorName">Author</label>
                 </div>
                 <div class="input-field col m12 s12">
@@ -68,22 +69,21 @@
                     <label for="scriptChamp">Champion</label>
                 </div>
                 <div class="input-field col s12 s12">
-                    <input id="threadUrl" type="url" class="validate">
+                    <input id="threadUrl" type="url" class="validate" pattern="^https:\/\/forum.com\/thread.*$">
                     <label for="threadUrl">Thread</label>
+                    <span class="helper-text" data-error="Please provide a valid thread URL">Thread URL</span>
                 </div>
                 <div class="input-field col s12 s12">
-                    <input id="githubUrl" type="url" class="validate">
+                    <input id="githubUrl" type="url" class="validate" pattern="^https:\/\/raw.githubusercontent.com.*$">
                     <label for="githubUrl">GitHub</label>
+                    <span class="helper-text" data-error="Please provide a valid GitHub URL">Github raw link</span>
                 </div>
-                <div class="g-recaptcha left" data-sitekey="6LeSWk4UAAAAAC3XFw4S0xuuNKbkPd9gdTVqNu5e"></div>
+                <div id="recaptcha" class="g-recaptcha left" data-sitekey="6LeSWk4UAAAAAC3XFw4S0xuuNKbkPd9gdTVqNu5e" data-theme="light"></div>
                 <a class="btn waves-effect waves-light right disabled">
                     <i class="material-icons right">send</i>
                     Submit </a>
 
             </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close btn-flat">Close</a>
         </div>
     </div>
 

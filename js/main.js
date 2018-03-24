@@ -3,15 +3,16 @@ var scriptData = {}
 var version
 
 function setTheme(overwrite = false) {
-  var dark = overwrite
-    ? overwrite
-    : document.getElementById('theme').checked == true
-  document.body.style.cssText = dark
-    ? '--main-background-color: #232323;--main-font-color: rgba(255, 255, 255, 0.87);--script-bg-color: #232323'
-    : '  --main-background-color: #fff;--main-font-color: rgba(0, 0, 0, 0.87);--script-bg-color: rgb(250, 250, 250)'
-  document.getElementById('themeLabel').innerHTML = dark
-    ? 'Dark Theme'
-    : 'Bright Theme'
+  var dark = overwrite ?
+    overwrite :
+    document.getElementById('theme').checked == true
+  document.body.style.cssText = dark ?
+    '--main-background-color: #232323;--main-font-color: rgba(255, 255, 255, 0.87);--script-bg-color: #232323' :
+    '  --main-background-color: #fff;--main-font-color: rgba(0, 0, 0, 0.87);--script-bg-color: rgb(250, 250, 250)'
+  document.getElementById('themeLabel').innerHTML = dark ?
+    'Dark Theme' :
+    'Bright Theme'
+  document.getElementById('recaptcha').setAttribute("data-theme", dark ? "dark" : "light")
   if (localStorage) {
     localStorage.setItem('dark', dark)
   }
@@ -42,7 +43,7 @@ if (localStorage && localStorage.dark) {
 
 function loadJSON(path, success, error) {
   var xhr = new XMLHttpRequest()
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         if (success) success(JSON.parse(xhr.responseText))
@@ -66,7 +67,7 @@ M.Modal.init(elem)
 
 var elem = document.querySelector('.modal.bottom-sheet')
 M.Modal.init(elem, {
-  onCloseEnd: function() {
+  onCloseEnd: function () {
     document.getElementById('modalChampImg').src = ''
   }
 })
@@ -95,10 +96,10 @@ function renderChamps(data, firstRun = false) {
         </div>`
   }
   document.querySelector('#list').innerHTML = str
-  if (!firstRun) return
-  ;[].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
+  if (!firstRun) return;
+  [].forEach.call(document.querySelectorAll('img[data-src]'), function (img) {
     img.setAttribute('src', img.getAttribute('data-src'))
-    img.onload = function() {
+    img.onload = function () {
       img.removeAttribute('data-src')
     }
   })
@@ -142,23 +143,23 @@ function showChamp(champName) {
   img.setAttribute(
     'data-src',
     'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/' +
-      champ.systemName +
-      '_0.jpg'
+    champ.systemName +
+    '_0.jpg'
   )
 
   img.setAttribute('src', img.getAttribute('data-src'))
-  img.onload = function() {
+  img.onload = function () {
     img.removeAttribute('data-src')
   }
 
   //CARE FOR XSS!
   var script = scriptData[champ.systemName] || []
   var str =
-    script.length == 0
-      ? '<div class="center noFound"><span class="flow-text nonFound grey-text text-darken-2">No scripts found for ' +
-        champ.name +
-        '</span><div>'
-      : ''
+    script.length == 0 ?
+    '<div class="center noFound"><span class="flow-text nonFound grey-text text-darken-2">No scripts found for ' +
+    champ.name +
+    '</span><div>' :
+    ''
   for (i = 0; i < script.length; i++) {
     var stars = scriptData[champ.systemName][i].stars
     str += `<li class="collection-item avatar">
@@ -210,8 +211,7 @@ function resetStars(element) {
 function vote(element) {
   var rating = [...element.parentNode.children].indexOf(element) + 1
   M.toast({
-    html:
-      '<i class="material-icons yellow-text">star</i> You gave ' +
+    html: '<i class="material-icons yellow-text">star</i> You gave ' +
       rating +
       ' stars to ' +
       element.parentNode.parentNode.children[2].children[0].innerHTML
@@ -229,7 +229,7 @@ function loadAddScript() {
   if (!elem) return
   elem.classList.remove('notInit')
   M.Autocomplete.init(elem, {
-    onAutocomplete: function(value) {
+    onAutocomplete: function (value) {
       document.getElementById('autocompletePrefix').src =
         'https://ddragon.leagueoflegends.com/cdn/' +
         version +
@@ -238,7 +238,7 @@ function loadAddScript() {
         '.png'
     },
     minLength: 2,
-    data: champData.map(a => a.systemName).reduce(function(obj, value) {
+    data: champData.map(a => a.systemName).reduce(function (obj, value) {
       obj[value] =
         'https://ddragon.leagueoflegends.com/cdn/' +
         version +
@@ -258,13 +258,13 @@ function loadAddScript() {
 
 loadJSON(
   'https://ddragon.leagueoflegends.com/api/versions.json',
-  function(data) {
+  function (data) {
     version = data[0]
     loadJSON(
       'https://ddragon.leagueoflegends.com/cdn/' +
-        version +
-        '/data/en_US/champion.json',
-      function(data) {
+      version +
+      '/data/en_US/champion.json',
+      function (data) {
         for (champ in data.data) {
           var champObject = data.data[champ]
           champData.push({
@@ -284,12 +284,12 @@ loadJSON(
           localStorage.setItem('version', version)
         }
       },
-      function(error) {
+      function (error) {
         console.error(error)
       }
     )
   },
-  function(error) {
+  function (error) {
     console.error(error)
   }
 )

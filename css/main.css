@@ -9,6 +9,10 @@
   --script-bg-color: rgb(250, 250, 250);
 }
 
+html {
+  font-family: 'Open Sans', cursive;
+}
+
 .btn-flat {
   color: var(--main-font-color);
 }
