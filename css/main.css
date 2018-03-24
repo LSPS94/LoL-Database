@@ -22,19 +22,25 @@ body {
   background-color: var(--main-background-color);
 }
 
-.collection {
-  border: 0;
-}
-
 .collection .collection-item {
   background-color: var(--script-bg-color);
 }
 
+.dropdown-content li:hover,
+.dropdown-content li.active {
+  background-color: gray
+}
+
+.collection {
+  border: 0;
+}
+
 #searchWrapper,
-#searchWrapper > i.material-icons {
+#searchWrapper>i.material-icons {
   padding: 10px;
   border-radius: 5px;
 }
+
 .searchCol {
   position: -webkit-sticky;
   position: sticky;
@@ -68,7 +74,7 @@ img[data-src] {
   margin-left: 20px;
 }
 
-a.secondary-content > i {
+a.secondary-content>i {
   color: gold;
 }
 
