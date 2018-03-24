@@ -73,7 +73,6 @@ M.Modal.init(elem, {
 })
 
 function renderChamps(data, firstRun = false) {
-  if (!renderChamps) return
   var str = ''
   for (i = 0; i < data.length; i++) {
     str += `<div class="col s6 m6 l3 xl2 hoverable champWrapper" onclick=showChamp("${
@@ -114,16 +113,24 @@ function capitalizeFirstLetter(string) {
 function filterData() {
   //Search
   var filter = document.getElementById('searchField').value.toLowerCase()
-  var checkbox = document.querySelector('input[name="roleFilter"]:checked')
-    .value
+  var checkboxes = document.querySelectorAll('input[name="roleFilter"]:checked')
+  console.log(checkboxes)
+  if (!checkboxes) return renderChamps([])
   var newList = []
   for (i = 0; i < champData.length; i++) {
     if (
       champData[i].name.toLowerCase().includes(filter) ||
       champData[i].systemName.toLowerCase().includes(filter)
     ) {
-      if (checkbox == 'All' || champData[i].tags.includes(checkbox))
+      if (checkboxes.length == 6) {
         newList.push(champData[i])
+      } else {
+        for (l = 0; l < checkboxes.length; l++) {
+          if (champData[i].tags.includes(checkboxes[l].value))
+            newList.push(champData[i])
+          break;
+        }
+      }
     }
   }
   window.scrollTo(0, 0)
