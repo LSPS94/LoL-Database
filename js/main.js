@@ -263,13 +263,21 @@ function loadAddScript() {
   document.getElementsByTagName('head')[0].appendChild(script)
 }
 
-function captchaSolve() {
+var solveKey;
+
+function captchaSolve(key) {
+  solveKey = key
   document.getElementById('sender').classList.remove("disabled")
 }
 
 function sendData() {
   if (document.getElementById('sender').disabled) return;
-  alert("send")
+  var postData = [...document.querySelectorAll('#addScript input')].reduce((obj, item) => {
+    obj[item.id] = item.value
+    return obj
+  }, {})
+  postData.captcha = solveKey
+  console.log(postData)
 }
 
 loadJSON(
