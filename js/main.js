@@ -263,6 +263,15 @@ function loadAddScript() {
   document.getElementsByTagName('head')[0].appendChild(script)
 }
 
+function captchaSolve() {
+  document.getElementById('sender').classList.remove("disabled")
+}
+
+function sendData() {
+  if (document.getElementById('sender').disabled) return;
+  alert("send")
+}
+
 loadJSON(
   'https://ddragon.leagueoflegends.com/api/versions.json',
   function (data) {

@@ -78,8 +78,9 @@
                     <label for="githubUrl">GitHub</label>
                     <span class="helper-text" data-error="Please provide a valid GitHub URL">Github raw link</span>
                 </div>
-                <div id="recaptcha" class="g-recaptcha left" data-sitekey="6LeSWk4UAAAAAC3XFw4S0xuuNKbkPd9gdTVqNu5e" data-theme="light"></div>
-                <a class="btn waves-effect waves-light right disabled">
+                <div id="recaptcha" class="g-recaptcha left" data-callback="captchaSolve" data-sitekey="6LeSWk4UAAAAAC3XFw4S0xuuNKbkPd9gdTVqNu5e"
+                    data-theme="light"></div>
+                <a class="btn waves-effect waves-light right disabled" onclick="sendData()" id="sender">
                     <i class="material-icons right">send</i>
                     Submit </a>
 
