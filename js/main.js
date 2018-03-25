@@ -114,7 +114,6 @@ function filterData() {
   //Search
   var filter = document.getElementById('searchField').value.toLowerCase()
   var checkboxes = document.querySelectorAll('input[name="roleFilter"]:checked')
-  console.log(checkboxes)
   if (!checkboxes) return renderChamps([])
   var newList = []
   for (i = 0; i < champData.length; i++) {
@@ -126,9 +125,10 @@ function filterData() {
         newList.push(champData[i])
       } else {
         for (l = 0; l < checkboxes.length; l++) {
-          if (champData[i].tags.includes(checkboxes[l].value))
+          if (champData[i].tags.includes(checkboxes[l].value)) {
             newList.push(champData[i])
-          break;
+            break;
+          }
         }
       }
     }
@@ -286,6 +286,7 @@ loadJSON(
           champData,
           localStorage && localStorage.champData ? true : true
         )
+        filterData()
         if (localStorage) {
           localStorage.setItem('champData', JSON.stringify(champData))
           localStorage.setItem('version', version)
